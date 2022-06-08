@@ -13,6 +13,10 @@ The font names (see comments in `pkuugthesis.sty`) may also need to be changed f
 ## :bangbang: Further operations besides the style file :bangbang:
 You should also input the following commands after `\begin{document}` to set the headers and footers (use the package `fancyhdr` first).
 ```LaTeX
+% get title
+\makeatletter
+\let\Title\@title
+\makeatother
 \setlength{\headheight}{13pt}
 \fancypagestyle{pkuthesis}{
     \ctexset{chapter/pagestyle=pkuthesis}
