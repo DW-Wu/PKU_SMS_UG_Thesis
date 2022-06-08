@@ -7,14 +7,14 @@ The TeX code heavily depends on the projects [Bochen Tan (2019)](https://github.
 
 ## Usage of the style file
 The style file only provides the typesetting of the cover page.
-I use brute force such as `\vspace`, `\hspace`, `makebox[width]` and `\parbox[position][height]{width}{text}` to set the spacings in the template, which was provided as a MS Word document. You may adjust the lengths to your own needs.
+I use brute force such as `\vspace`, `\hspace`, `\makebox[width]` and `\parbox[position][height]{width}{text}` to set the spacings in the template, which was provided as a MS Word document. You may adjust the lengths to your own needs.
 
 You must set `documentclass` to `ctexbook` in order to use this style file.
 
 The font names (see comments in `pkuugthesis.sty`) may also need to be changed for different system requirements (I use macOS Big Sur 11.5).
 
 ## :bangbang: Further operations besides the style file :bangbang:
-You should also input the following commands after `\begin{document}` to set the headers and footers (use the package `fancyhdr` first).
+You should also input the following commands **AFTER** `\begin{document}` to set the headers and footers (use the package `fancyhdr` first).
 ```LaTeX
 % get title
 \makeatletter
@@ -32,3 +32,5 @@ Also, you should add this line of command at the beginning of the first chapter.
 ```LaTeX
 \pagestyle{pkuthesis}
 ```
+
+Have fun! :unicorn:
