@@ -1,0 +1,76 @@
+% PKU Math undergradaute thesis template 2022 by Uwi Ewad
+% inspired by Bochen Tan (2019): https://github.com/tbcdebug/PKU_EECS_UGR_THSS
+% and Casper Ti. Vector (2017): https://github.com/JoeHF/aet_paper
+% documentclass must be ctexbook
+% \RequirePackage{ctex}
+\ProvidesPackage{pkuugthesis}
+
+\RequirePackage{geometry}
+\geometry{left=3.18cm,right=3.18cm,top=2.54cm,bottom=2.54cm}
+
+% fonts. Modify to match OS
+\setCJKmainfont[BoldFont={STHeiti}, ItalicFont={STKaiti},BoldItalicFont={Kaiti SC Bold}]{STSong}
+\setCJKsansfont{Yuanti SC}
+\setCJKmonofont{STFangsong}
+% \setmainfont{Times New Roman}
+\newcommand{\kaiti}{\CJKfamily{kaiti}}
+
+% definition of new \@... commands, from https://stackoverflow.com/a/2833982
+\def\@ctitle{}
+\def\ctitle#1{\gdef\@ctitle{#1}}
+\def\@etitle{}
+\def\etitle#1{\gdef\@etitle{#1}}
+\def\@studentid{}
+\def\studentid#1{\gdef\@studentid{#1}}
+% \def\@studentid{\@latex@error{No \noexpand\studentid given}\@ehc}
+\def\@school{}
+\def\school#1{\gdef\@school{#1}}
+% \def\@school{\@latex@error{No \noexpand\school given}\@ehc}
+\def\@major{}
+\def\major#1{\gdef\@major{#1}}
+% \def\@major{\@latex@error{No \noexpand\major given}\@ehc}
+\def\@mentor{}
+\def\mentor#1{\gdef\@mentor{#1}}
+% \def\@mentor{\@latex@error{No \noexpand\mentor given}\@ehc}
+\newcommand{\Title}{\@ctitle}
+
+% redefine title page
+\def\maketitle{
+\begin{titlepage}
+    \centering
+    \includegraphics[width=25mm]{pkulogo.eps}
+    \hspace{3mm}
+    \includegraphics[width=72mm]{pkuword.eps}
+
+    \vspace{0.5cm}
+
+    {\zihao{-0}\bfseries 本科生毕业论文}
+
+    \vspace{1cm}
+
+    \begin{tabular}{rc}
+        \rmfamily\zihao{2}题目：
+        & \parbox[b][2.2cm]{10.16cm}{\centering\zihao{2}\bfseries \@ctitle} \\ \cline{2-2} 
+        & \parbox[c][2.2cm]{10.16cm}{\centering\zihao{4}\bfseries \@etitle} \\ \cline{2-2} 
+    \end{tabular}
+
+    \vspace{3.5cm} % adjust the vertical lengths if the title was too long
+
+    \begin{tabular}{rc}
+        \parbox[b][0.89cm]{3.19cm}{\bfseries\zihao{-3}姓\phantom{一二}名：}
+        & \parbox[b]{7.62cm}{\centering\ttfamily\zihao{3} \@author} \\ \cline{2-2}
+        \parbox[b][0.89cm]{3.19cm}{\bfseries\zihao{-3}学\phantom{一二}号：}
+        & \makebox[7.62cm]{\centering\rmfamily\zihao{3} \@studentid} \\ \cline{2-2}
+        \parbox[b][0.89cm]{3.19cm}{\bfseries\zihao{-3}院\phantom{一二}系：}
+        & \makebox[7.62cm]{\centering\ttfamily\zihao{3} \@school} \\ \cline{2-2}
+        \parbox[b][0.89cm]{3.19cm}{\bfseries\zihao{-3}专\phantom{一二}业：}
+        & \makebox[7.62cm]{\centering\ttfamily\zihao{3} \@major} \\ \cline{2-2}
+        \parbox[b][0.89cm]{3.19cm}{\bfseries\zihao{-3}导师姓名：}
+        & \makebox[7.62cm]{\centering\ttfamily\zihao{3} \@mentor} \\ \cline{2-2} 
+    \end{tabular}
+    
+    \vspace{3cm}
+
+    {\rmfamily\zihao{3}二〇二二年六月}
+\end{titlepage}
+}
