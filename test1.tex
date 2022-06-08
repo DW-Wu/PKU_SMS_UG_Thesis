@@ -1,0 +1,214 @@
+% PKU Math undergradaute thesis template 2022 by Uwi Ewad
+% inspired by Bochen Tan (2019): https://github.com/tbcdebug/PKU_EECS_UGR_THSS
+% and Casper Ti. Vector (2017): https://github.com/JoeHF/aet_paper
+
+\documentclass[UTF8,openany,a4paper]{ctexbook}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{tikz-cd}
+\usepackage{setspace}
+\usepackage{fancyhdr}
+\usepackage{booktabs}
+\usepackage{inputenc}
+\usepackage{hyperref}
+\usepackage{bm,ulem}
+\usepackage{geometry,graphicx,float}
+\usepackage{xeCJK}
+\usepackage{cite}
+\usepackage{fontspec}
+\usepackage{lipsum,zhlipsum}
+
+\geometry{left=3.18cm,right=3.18cm,top=2.54cm,bottom=2.54cm}
+
+\setCJKmainfont[BoldFont={STHeiti}, ItalicFont={STKaiti},BoldItalicFont={Kaiti SC Bold}]{STSong}
+\setCJKsansfont{Yuanti SC}
+\setCJKmonofont{STFangsong}
+
+% \setmainfont{Times New Roman}
+
+% some font shape causes warnings...
+\DeclareFontFamily{U}{rsfs}{\skewchar\font127 }
+\DeclareFontShape{U}{rsfs}{m}{n}{%
+    <-6> rsfs5
+    <6-8> rsfs7
+    <8-> rsfs10
+}{}
+\DeclareFontShape{TU}{lmr}{m}{scit}{
+    <-> qx-lmcsco10
+}{}
+
+% set format of titles
+\ctexset{
+    chapter={format={\centering\zihao{3}\bfseries}, beforeskip=0pt},
+    section={format={\zihao{3}\rmfamily},beforeskip=0pt},
+    subsection={format={\zihao{4}\rmfamily},beforeskip=0pt}
+}
+
+\newtheorem{theorem}{定理}
+\newtheorem{proposition}[theorem]{命题}
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{corollary}[theorem]{推论}
+\theoremstyle{definition}
+\newtheorem{definition}{定义}
+\newtheorem{remark}[theorem]{注}
+
+\title{Fisher信息矩阵在多层感知机中的各种应用}
+\author{Luster Dawn}
+
+% get title
+\makeatletter
+\let\Title\@title
+\makeatother
+
+\begin{document}
+% header and footer
+\fancypagestyle{pkuthesis}{
+    \ctexset{chapter/pagestyle=pkuthesis}
+    \fancyhead[L,R]{}
+    \fancyhead[C]{\Title}
+    \fancyfoot[C]{第 \thepage 页}
+}
+\pagestyle{pkuthesis}
+
+
+% the metrics are approximately observed from the 2022 template MS Word file
+\pagenumbering{roman}
+\begin{titlepage}
+    \centering
+    \includegraphics[width=25mm]{pkulogo.eps}
+    \hspace{3mm}
+    \includegraphics[width=72mm]{pkuword.eps}
+
+    \vspace{0.5cm}
+
+    {\zihao{0}\bfseries 本科生毕业论文}
+
+    \vspace{1cm}
+
+    \begin{tabular}{rc}
+        \rmfamily\zihao{2}题目：
+        & \parbox[b][2.2cm]{10.16cm}{\centering\zihao{2}\bfseries \Title} \\ \cline{2-2} 
+        & \parbox[c][2.2cm]{10.16cm}{\centering\zihao{2}\bfseries The Various Applications of FIM in MLP} \\ \cline{2-2} 
+    \end{tabular}
+
+    \vspace{3.5cm} % adjust the vertical lengths if the title was too long
+
+    \begin{tabular}{rc}
+        \parbox[b][0.89cm]{3.19cm}{\bfseries\zihao{3}姓\phantom{某某}名：}
+        & \parbox[b]{7.62cm}{\centering\ttfamily\zihao{3} Sheen Daybreak} \\ \cline{2-2}
+        \parbox[b][0.89cm]{3.19cm}{\bfseries\zihao{3}学\phantom{某某}号：}
+        & \makebox[7.62cm]{\centering\rmfamily\zihao{3}20101010} \\ \cline{2-2}
+        \parbox[b][0.89cm]{3.19cm}{\bfseries\zihao{3}院\phantom{某某}系：}
+        & \makebox[7.62cm]{\centering\ttfamily\zihao{3}魔法学院} \\ \cline{2-2}
+        \parbox[b][0.89cm]{3.19cm}{\bfseries\zihao{3}专\phantom{某某}业：}
+        & \makebox[7.62cm]{\centering\ttfamily\zihao{3}炼丹学} \\ \cline{2-2}
+        \parbox[b][0.89cm]{3.19cm}{\bfseries\zihao{3}导师姓名：}
+        & \makebox[7.62cm]{\centering\ttfamily\zihao{3}Dusk Glitter} \\ \cline{2-2} 
+    \end{tabular}
+    
+    \vspace{3cm}
+
+    {\rmfamily\zihao{3}二〇二二年六月}
+\end{titlepage}
+
+% line space of text
+\doublespacing
+
+\chapter*{版权声明}
+任何收存和保管本论文各种版本的单位和个人，未经本论文作者同意，不得将本论文转借他人，亦不得随意复制、抄录、拍照或以任何方式传播。否则，引起有碍作者著作权之问题，将可能承担法律责任。
+
+\chapter*{摘要}
+\zhlipsum[5-10][name=zhufu]
+
+\chapter*{ABSTRACT}
+\lipsum[1-5][1-10]
+
+\tableofcontents
+
+\chapter{一只敏捷的棕色狐狸}
+\setcounter{page}{1} % start counting pages here
+\pagenumbering{arabic}
+\textit{This is italic text and \textsc{slanted SC text}}.
+\section{敏捷}
+\zhlipsum[1-2]
+\begin{theorem}
+    \zhlipsum[1][name=zhufu]
+    所以FIM \footnote{脚注: FIM含义为Fisher information matrix} ……
+\end{theorem}
+\subsection{一只}
+\zhlipsum[3]
+\subsection{的}
+\zhlipsum[4-5]
+\section{棕色}
+\zhlipsum[6]
+\subsection{狐狸}
+\zhlipsum[7]
+
+\chapter{跳过一只懒狗}
+\zhlipsum[9]
+\section{跳过一只懒狗}
+\subsection{跳过}
+\zhlipsum[8]
+\subsection{懒狗}
+\zhlipsum[10]
+
+{\zihao{4} \sffamily 一只敏捷的棕色狐狸。} \cite{bax2005}
+\zhlipsum[11]
+
+{\zihao{5} \ttfamily 一只敏捷的棕色狐狸。} \cite{doumic2009}
+\zhlipsum[12]
+
+\bibliographystyle{amsplain}
+\bibliography{citing.bib}
+
+\appendix
+\chapter{定理证明}
+\begin{lemma}
+    \zhlipsum[13]    
+\end{lemma}
+\begin{lemma}
+    \zhlipsum[14]    
+\end{lemma}
+\begin{lemma}
+    \zhlipsum[15]    
+\end{lemma}
+\chapter*{致谢}
+\zhlipsum[16]
+
+\chapter*{北京大学学位论文原创性声明和使用授权说明}
+\begin{center}
+\zihao{3}\rmfamily 原创性声明
+\end{center}
+
+本人郑重声明：所呈交的学位论文，是本人在导师的指导下，独立进行研究工作所取得的成果。除文中已经注明引用的内容外，本论文不含任何其他个人或集体已经发表或撰写过的作品或成果。对本文的研究做出重要贡献的个人和集体，均已在文中以明确方式标明。本声明的法律结果由本人承担。
+\bigskip
+
+\begin{flushright}
+论文作者签名： \makebox[37mm]{}
+
+日期：\qquad 年\qquad 月\qquad 日
+\end{flushright}
+\vspace{100pt}
+
+\begin{center}
+\zihao{3}\rmfamily 学位论文使用授权说明
+\end{center}
+
+\bigskip
+
+本人完全了解北京大学关于收集、保存、使用学位论文的规定，即：
+\begin{itemize}
+    \item 按照学校要求提交学位论文的印刷本和电子版本；
+    \item 学校有权保存学位论文的印刷本和电子版，并提供目录检索与阅览服务，在校园网上提供服务；
+    \item 学校可以采用影印、缩印、数字化或其它复制手段保存论文。
+\end{itemize}
+\bigskip
+\begin{flushright}
+    论文作者签名： \makebox[20mm]{}
+    导师签名：\makebox[20mm]{}
+        
+    日期：\qquad 年\qquad 月\qquad 日
+\end{flushright}
+\end{document}
