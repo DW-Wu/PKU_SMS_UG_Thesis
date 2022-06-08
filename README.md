@@ -1,6 +1,9 @@
 # PKU_SMS_UG_Thesis
-A modification of the PKU thesis template in 2022. It consists of one style file `pkuugthesis.sty` and two vector images (the logo `pkulogo.eps` and the name `pkuword.eps`).
+A $\LaTeX$ implementation of the PKU thesis template in 2022. It consists of one style file `pkuugthesis.sty` and two vector images (the logo `pkulogo.eps` and the name `pkuword.eps`).
 The TeX code heavily depends on the projects [Bochen Tan (2019)](https://github.com/tbcdebug/PKU_EECS_UGR_THSS) and [Casper Ti. Vector (2017)]( https://github.com/JoeHF/aet_paper). Gratitudes to these amazing people.
+
+这是2022年PKU本科毕业论文的一种$\LaTeX$实现，主要组成部分为样式文件`pkuugthesis.sty`和两张图片 (`pkulogo.eps`、`pkuword.eps`)。
+本项目受到[Bochen Tan (2019)](https://github.com/tbcdebug/PKU_EECS_UGR_THSS)和[Casper Ti. Vector (2017)]( https://github.com/JoeHF/aet_paper)的重大影响。感谢他们。
 
 ## Usage of the style file
 The style file only provides the typesetting of the cover page.
