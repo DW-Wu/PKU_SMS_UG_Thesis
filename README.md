@@ -8,6 +8,8 @@ I use brute force such as `\vspace`, `\hspace`, `makebox[width]` and `\parbox[po
 
 You must set `documentclass` to `ctexbook` in order to use this style file.
 
+The font names (see comments in `pkuugthesis.sty`) may also need to be changed for different system requirements (I use macOS Big Sur 11.5).
+
 ## :bangbang: Further operations besides the style file :bangbang:
 You should also input the following commands after `\begin{document}` to set the headers and footers (use the package `fancyhdr` first).
 ```LaTeX
